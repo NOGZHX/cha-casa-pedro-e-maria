@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <!--
+    ╔══════════════════════════════════════════════════════════════╗
+    ║  O QUE É ESTE ARQUIVO?                                       ║
+    ║  O pom.xml é como uma "lista de compras" do seu projeto.     ║
+    ║  Ele diz para o Java: "ei, precisamos dessas bibliotecas!"   ║
+    ║  O Maven (gerenciador de dependências) lê este arquivo e     ║
+    ║  baixa tudo que é necessário automaticamente.                ║
+    ╚══════════════════════════════════════════════════════════════╝
+    -->
+
+    <!-- Spring Boot Starter Parent: define versões de tudo automaticamente -->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.2.0</version>
+        <relativePath/>
+    </parent>
+
+    <!-- Identificação única do seu projeto -->
+    <groupId>com.chacasanova</groupId>      <!-- como o "sobrenome" do projeto -->
+    <artifactId>cha-casa-nova</artifactId>  <!-- como o "nome" do projeto -->
+    <version>1.0.0</version>
+    <name>Chá de Casa Nova</name>
+    <description>Site para chá de casa nova de Pedro e Maria</description>
+
+    <properties>
+        <java.version>17</java.version>  <!-- versão mínima do Java necessária -->
+    </properties>
+
+    <dependencies>
+
+        <!--
+        DEPENDÊNCIA 1: Spring Boot Web
+        Isso adiciona tudo que precisamos para criar um servidor web.
+        Com isso, seu computador vira um servidor capaz de responder
+        requisições de qualquer navegador!
+        -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <!--
+        DEPENDÊNCIA 2: Spring Boot DevTools
+        Facilidade para desenvolvimento: reinicia o servidor
+        automaticamente quando você muda o código!
+        -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
+            <optional>true</optional>
+        </dependency>
+
+        <!--
+        DEPENDÊNCIA 3: Jackson (já vem com o starter-web)
+        Converte objetos Java para JSON e vice-versa.
+        Ex: Java lê o arquivo presentes.json e devolve para o navegador.
+        -->
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!--
+            Plugin Maven: permite gerar um arquivo .jar
+            Um .jar é como um "pacote executável" do seu projeto.
+            Com ele, você pode rodar o site em qualquer lugar!
+            -->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

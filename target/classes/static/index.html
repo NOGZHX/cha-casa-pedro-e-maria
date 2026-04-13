@@ -1,0 +1,1314 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <!--
+  ╔══════════════════════════════════════════════════════════════════╗
+  ║  ARQUIVO: index.html                                             ║
+  ║                                                                  ║
+  ║  Este é o arquivo principal do site. Tudo que o usuário vê      ║
+  ║  começa aqui. O HTML define a ESTRUTURA da página.              ║
+  ║                                                                  ║
+  ║  HTML = HyperText Markup Language                                ║
+  ║  É a "linguagem" que os navegadores (Chrome, Firefox) entendem. ║
+  ║  Pense como o "esqueleto" de uma página.                        ║
+  ╚══════════════════════════════════════════════════════════════════╝
+  -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🏠 Chá de Casa Nova — Pedro e Maria</title>
+
+  <!-- Google Fonts: fonte moderna e elegante -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- QR Code library: gera QR Codes no navegador sem precisar de servidor -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+  <style>
+    /* ╔══════════════════════════════════════════════════════════════╗
+       ║  CSS = Cascading Style Sheets                                ║
+       ║  CSS é a "roupa" da página. Enquanto HTML é o esqueleto,    ║
+       ║  o CSS define cores, tamanhos, espaçamentos, animações.     ║
+       ╚══════════════════════════════════════════════════════════════╝ */
+
+    /* ── Variáveis CSS (como constantes, evita repetição de valores) ── */
+    :root {
+      --bg:          #f5f5f7;        /* fundo principal */
+      --bg-card:     #ffffff;        /* fundo dos cards */
+      --bg-modal:    #ffffff;        /* fundo do modal */
+      --text-primary: #1d1d1f;      /* texto principal */
+      --text-secondary: #6e6e73;    /* texto secundário */
+      --text-muted:  #aeaeb2;       /* texto bem suave */
+      --accent:      #0071e3;        /* azul Apple/Win11 */
+      --accent-hover: #0077ed;
+      --accent-soft: #e8f0fe;       /* azul bem claro */
+      --border:      #e0e0e5;        /* bordas */
+      --shadow-sm:   0 1px 4px rgba(0,0,0,.06), 0 2px 8px rgba(0,0,0,.04);
+      --shadow-md:   0 4px 16px rgba(0,0,0,.08), 0 1px 4px rgba(0,0,0,.04);
+      --shadow-lg:   0 12px 40px rgba(0,0,0,.12), 0 4px 12px rgba(0,0,0,.06);
+      --radius-sm:   10px;
+      --radius-md:   16px;
+      --radius-lg:   24px;
+      --radius-xl:   32px;
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body:    'DM Sans', -apple-system, 'Segoe UI', sans-serif;
+      --transition:  0.22s cubic-bezier(.4,0,.2,1);
+    }
+
+    /* ── Reset & Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--bg);
+      color: var(--text-primary);
+      line-height: 1.6;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Scrollbar personalizada ── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+
+    /* ════════════════════════════════════════════
+       PÁGINA 1 — HOME
+       ════════════════════════════════════════════ */
+
+    #page-home {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Ornamento de fundo sutil */
+    #page-home::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% -10%, rgba(0,113,227,.06) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 40% at 80% 90%, rgba(0,113,227,.04) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .home-content {
+      max-width: 640px;
+      width: 100%;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+      animation: fadeInUp .8s var(--transition) both;
+    }
+
+    .home-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: .8rem;
+      font-weight: 600;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      padding: .35rem .9rem;
+      border-radius: 99px;
+      margin-bottom: 1.8rem;
+      border: 1px solid rgba(0,113,227,.15);
+    }
+
+    .home-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.6rem, 8vw, 4.5rem);
+      font-weight: 500;
+      line-height: 1.1;
+      letter-spacing: -.02em;
+      color: var(--text-primary);
+      margin-bottom: .6rem;
+    }
+
+    .home-names {
+      font-family: var(--font-display);
+      font-size: clamp(1.1rem, 3vw, 1.5rem);
+      font-weight: 400;
+      font-style: italic;
+      color: var(--accent);
+      margin-bottom: 2.4rem;
+    }
+
+    .home-message {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 2rem 2.4rem;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 2.6rem;
+      text-align: left;
+      position: relative;
+    }
+
+    .home-message::before {
+      content: '"';
+      font-family: var(--font-display);
+      font-size: 5rem;
+      line-height: 1;
+      color: var(--accent-soft);
+      position: absolute;
+      top: .8rem;
+      left: 1.4rem;
+    }
+
+    .home-message p {
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      line-height: 1.75;
+      padding-top: 1.6rem;
+    }
+
+    .home-message p + p { margin-top: .9rem; }
+
+    .home-message .signature {
+      margin-top: 1.2rem;
+      font-family: var(--font-display);
+      font-style: italic;
+      color: var(--text-muted);
+      font-size: .95rem;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: .6rem;
+      background: var(--accent);
+      color: #fff;
+      font-family: var(--font-body);
+      font-size: 1.05rem;
+      font-weight: 600;
+      padding: .95rem 2.4rem;
+      border-radius: 99px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(0,113,227,.3);
+      transition: var(--transition);
+      text-decoration: none;
+      letter-spacing: -.01em;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-hover);
+      box-shadow: 0 6px 28px rgba(0,113,227,.38);
+      transform: translateY(-2px);
+    }
+
+    .btn-primary:active { transform: translateY(0); }
+
+    /* ════════════════════════════════════════════
+       PÁGINA 2 — LISTA DE PRESENTES
+       ════════════════════════════════════════════ */
+
+    #page-presentes {
+      display: none;
+      min-height: 100vh;
+      padding: 3rem 1.5rem 5rem;
+    }
+
+    #page-presentes.active { display: block; }
+
+    .presentes-header {
+      max-width: 900px;
+      margin: 0 auto 3rem;
+      text-align: center;
+    }
+
+    .presentes-header h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 5vw, 2.8rem);
+      font-weight: 500;
+      color: var(--text-primary);
+      margin-bottom: .5rem;
+    }
+
+    .presentes-header p {
+      color: var(--text-secondary);
+      font-size: 1rem;
+    }
+
+    .btn-voltar {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      font-family: var(--font-body);
+      font-size: .9rem;
+      font-weight: 500;
+      padding: .55rem 1.1rem;
+      border-radius: 99px;
+      cursor: pointer;
+      transition: var(--transition);
+      margin-bottom: 2rem;
+    }
+
+    .btn-voltar:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--accent-soft);
+    }
+
+    .comodo-section {
+      max-width: 900px;
+      margin: 0 auto 3rem;
+    }
+
+    .comodo-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+    }
+
+    .comodo-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* Grid de cards */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+
+    .card-presente {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      cursor: pointer;
+      transition: var(--transition);
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-presente:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+      border-color: rgba(0,113,227,.25);
+    }
+
+    .card-presente:active { transform: translateY(-1px); }
+
+    .card-img-wrap {
+      aspect-ratio: 1;
+      overflow: hidden;
+      background: var(--bg);
+    }
+
+    .card-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .4s var(--transition);
+    }
+
+    .card-presente:hover .card-img-wrap img {
+      transform: scale(1.07);
+    }
+
+    .card-body {
+      padding: .9rem 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: .25rem;
+      flex: 1;
+    }
+
+    .card-nome {
+      font-size: .95rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      line-height: 1.3;
+    }
+
+    .card-valor {
+      font-size: .85rem;
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    /* Card especial de valor personalizado */
+    .card-bonus {
+      background: linear-gradient(135deg, #f0f7ff 0%, #ffffff 100%);
+      border-color: rgba(0,113,227,.2);
+    }
+
+    .card-bonus .card-img-wrap {
+      background: linear-gradient(135deg, #e8f0fe, #dce8fd);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .card-bonus-icon {
+      font-size: 3.5rem;
+      line-height: 1;
+    }
+
+    /* ════════════════════════════════════════════
+       MODAL — DETALHE DO PRESENTE
+       ════════════════════════════════════════════ */
+
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.45);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity .3s ease, visibility .3s ease;
+    }
+
+    .modal-overlay.open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal {
+      background: var(--bg-modal);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-lg);
+      width: 100%;
+      max-width: 520px;
+      max-height: 92vh;
+      overflow-y: auto;
+      transform: scale(.94) translateY(12px);
+      transition: transform .3s cubic-bezier(.34,1.4,.64,1);
+      scrollbar-width: none;
+    }
+
+    .modal-overlay.open .modal {
+      transform: scale(1) translateY(0);
+    }
+
+    .modal::-webkit-scrollbar { display: none; }
+
+    .modal-img {
+      width: 100%;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+      border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+    }
+
+    .modal-img-placeholder {
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: linear-gradient(135deg, #e8f0fe, #dce8fd);
+      border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 5rem;
+    }
+
+    .modal-body {
+      padding: 1.8rem 2rem 2rem;
+    }
+
+    .modal-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .modal-nome {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-weight: 500;
+      color: var(--text-primary);
+      line-height: 1.2;
+    }
+
+    .modal-valor-badge {
+      flex-shrink: 0;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: .9rem;
+      font-weight: 700;
+      padding: .35rem .85rem;
+      border-radius: 99px;
+      white-space: nowrap;
+    }
+
+    .modal-desc {
+      font-size: .97rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: 1.8rem;
+    }
+
+    /* PIX Section */
+    .pix-section {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+    }
+
+    .pix-title {
+      font-size: .8rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 1.2rem;
+    }
+
+    /* Campo de valor personalizado (bônus) */
+    .valor-custom-wrap {
+      margin-bottom: 1.2rem;
+    }
+
+    .valor-custom-label {
+      font-size: .85rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      margin-bottom: .5rem;
+      display: block;
+    }
+
+    .valor-custom-input-row {
+      display: flex;
+      gap: .6rem;
+    }
+
+    .valor-input {
+      flex: 1;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: .7rem 1rem;
+      font-family: var(--font-body);
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      outline: none;
+      transition: var(--transition);
+    }
+
+    .valor-input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(0,113,227,.12);
+    }
+
+    .btn-gerar-pix {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: var(--radius-sm);
+      padding: .7rem 1.2rem;
+      font-family: var(--font-body);
+      font-size: .9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      white-space: nowrap;
+    }
+
+    .btn-gerar-pix:hover { background: var(--accent-hover); }
+
+    /* QR Code e código */
+    .pix-content { display: none; }
+    .pix-content.visible { display: block; }
+
+    .qr-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.2rem;
+    }
+
+    #qrcode-container {
+      background: #fff;
+      padding: 12px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #qrcode-container canvas,
+    #qrcode-container img {
+      display: block;
+    }
+
+    .qr-nome-recebedor {
+      text-align: center;
+    }
+
+    .qr-nome-label {
+      font-size: .75rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: .07em;
+      font-weight: 600;
+    }
+
+    .qr-nome-valor {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .aviso-pix {
+      background: #fff8e1;
+      border: 1px solid #ffe082;
+      border-radius: var(--radius-sm);
+      padding: .65rem 1rem;
+      font-size: .82rem;
+      color: #795548;
+      display: flex;
+      align-items: center;
+      gap: .4rem;
+      margin-bottom: 1rem;
+    }
+
+    .codigo-pix-wrap {
+      margin-bottom: 1rem;
+    }
+
+    .codigo-pix-label {
+      font-size: .78rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: .07em;
+      margin-bottom: .4rem;
+    }
+
+    .codigo-pix-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: .7rem .9rem;
+      font-size: .72rem;
+      font-family: 'Courier New', monospace;
+      color: var(--text-secondary);
+      word-break: break-all;
+      line-height: 1.5;
+      max-height: 80px;
+      overflow-y: auto;
+    }
+
+    .btn-copiar {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .5rem;
+      background: var(--bg-card);
+      border: 1.5px solid var(--accent);
+      color: var(--accent);
+      font-family: var(--font-body);
+      font-size: .95rem;
+      font-weight: 600;
+      padding: .8rem;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .btn-copiar:hover {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .btn-copiar.copiado {
+      background: #e8f5e9;
+      border-color: #43a047;
+      color: #2e7d32;
+    }
+
+    .btn-fechar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 99px;
+      cursor: pointer;
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      transition: var(--transition);
+      flex-shrink: 0;
+    }
+
+    .btn-fechar:hover { background: #fee2e2; border-color: #fca5a5; color: #dc2626; }
+
+    /* Loading state */
+    .loading-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      padding: 4rem 2rem;
+    }
+
+    .spinner {
+      width: 36px;
+      height: 36px;
+      border: 3px solid var(--border);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin .7s linear infinite;
+    }
+
+    /* Footer */
+    .site-footer {
+      text-align: center;
+      padding: 2rem;
+      color: var(--text-muted);
+      font-size: .82rem;
+    }
+
+    /* ════════════════════════════════════════════
+       ANIMAÇÕES
+       ════════════════════════════════════════════ */
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .fade-in {
+      animation: fadeInUp .5s var(--transition) both;
+    }
+
+    /* ════════════════════════════════════════════
+       RESPONSIVO — telas pequenas (celular)
+       ════════════════════════════════════════════ */
+
+    @media (max-width: 600px) {
+      .home-message { padding: 1.5rem; }
+      .modal-body { padding: 1.4rem 1.2rem 1.6rem; }
+      .cards-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (min-width: 601px) and (max-width: 900px) {
+      .cards-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    @media (min-width: 901px) {
+      .cards-grid { grid-template-columns: repeat(4, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ════════════════════════════════════════════
+       PÁGINA 1 — HOME
+       ════════════════════════════════════════════ -->
+  <section id="page-home">
+    <div class="home-content">
+
+      <!-- Badge decorativo -->
+      <div class="home-badge">🏠 &nbsp;Você está convidado</div>
+
+      <!-- Título principal -->
+      <h1 class="home-title">Chá de casa nova!</h1>
+
+      <!-- Subtítulo com os nomes -->
+      <p class="home-names">Pedro e Maria</p>
+
+      <!-- Mensagem emocional -->
+      <div class="home-message">
+        <p>
+          Cada lar começa com um sonho. E por muito tempo, o nosso foi
+          este: um cantinho só nosso, onde pudéssemos construir memórias,
+          receber quem amamos e chamar de nosso.
+        </p>
+        <p>
+          Chegamos lá. E saber que você faz parte dessa história nos
+          enche de gratidão. Não vim aqui pedir nada — vim compartilhar
+          a alegria. Mas se você quiser participar de alguma forma,
+          cada presente abaixo representa um pedacinho do lar que estamos
+          construindo com tanto amor.
+        </p>
+        <p>
+          Qualquer contribuição, por menor que pareça, carrega um
+          significado enorme para nós. O que vale mesmo é saber que
+          você está aqui, torcendo junto.
+        </p>
+        <p class="signature">Com carinho, Pedro e Maria 🤍</p>
+      </div>
+
+      <!-- Botão principal -->
+      <button class="btn-primary" onclick="mostrarPresentes()">
+        Ver lista de presentes
+        <span>→</span>
+      </button>
+
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════
+       PÁGINA 2 — LISTA DE PRESENTES
+       ════════════════════════════════════════════ -->
+  <section id="page-presentes">
+    <div class="presentes-header">
+      <button class="btn-voltar" onclick="voltarHome()">
+        ← Voltar
+      </button>
+      <h2>Lista de Presentes</h2>
+      <p>Escolha um item para ver detalhes e gerar o PIX</p>
+    </div>
+
+    <!-- Os cômodos e cards são gerados pelo JavaScript aqui -->
+    <div id="lista-container">
+      <div class="loading-wrap">
+        <div class="spinner"></div>
+        <p style="color: var(--text-muted); font-size: .9rem;">Carregando presentes…</p>
+      </div>
+    </div>
+
+    <footer class="site-footer">
+      Feito com 🤍 para Pedro e Maria
+    </footer>
+  </section>
+
+  <!-- ════════════════════════════════════════════
+       MODAL — DETALHE DO PRESENTE
+       ════════════════════════════════════════════ -->
+  <div class="modal-overlay" id="modal-overlay" onclick="fecharModalAoClicarFora(event)">
+    <div class="modal" id="modal">
+      <!-- Conteúdo inserido dinamicamente pelo JavaScript -->
+    </div>
+  </div>
+
+
+  <!-- ════════════════════════════════════════════════════════════════
+       JAVASCRIPT
+       O JavaScript é o "comportamento" da página.
+       HTML = estrutura, CSS = aparência, JS = comportamento.
+       Com ele conseguimos: carregar dados do servidor, mostrar modais,
+       gerar QR Code, copiar código, etc.
+       ════════════════════════════════════════════════════════════════ -->
+  <script>
+
+    // ── Variáveis globais ──────────────────────────────────────────
+    let todosPresentes = [];   // array com todos os presentes carregados
+    let configPix = {};        // objeto com chave PIX e nome do recebedor
+
+    // Emojis para cada cômodo (decoração)
+    const emojiComodo = {
+      'Cozinha':  '🍳',
+      'Sala':     '🛋️',
+      'Quarto':   '🛏️',
+      'Banheiro': '🚿',
+      'default':  '🏠'
+    };
+
+    // ── Ao carregar a página, buscar dados do servidor ─────────────
+    // "window.onload" = executa quando a página termina de carregar
+    window.onload = async function() {
+      await carregarDados();
+    };
+
+    // ── Função: carregar dados do servidor ─────────────────────────
+    async function carregarDados() {
+      try {
+        // "fetch" é como fazer uma ligação para o servidor pedindo dados.
+        // Aqui pedimos os presentes e as configurações de PIX ao mesmo tempo.
+        // "await" = espera a resposta antes de continuar.
+        const [resPresentes, resConfig] = await Promise.all([
+          fetch('/presentes'),
+          fetch('/config')
+        ]);
+
+        // Converter a resposta de JSON (texto) para objeto JavaScript
+        todosPresentes = await resPresentes.json();
+        configPix      = await resConfig.json();
+
+      } catch (erro) {
+        // Se der erro (ex: servidor offline), mostra aviso
+        console.error('Erro ao carregar dados:', erro);
+        document.getElementById('lista-container').innerHTML = `
+          <div class="loading-wrap">
+            <p style="color: var(--text-secondary);">
+              ⚠️ Não foi possível carregar os presentes.<br>
+              Verifique se o servidor está rodando.
+            </p>
+          </div>
+        `;
+      }
+    }
+
+    // ── Função: navegar para a lista de presentes ─────────────────
+    function mostrarPresentes() {
+      // Oculta a home
+      document.getElementById('page-home').style.display = 'none';
+
+      // Mostra a página de presentes
+      const pagina = document.getElementById('page-presentes');
+      pagina.classList.add('active');
+
+      // Gera os cards
+      renderizarPresentes();
+
+      // Volta ao topo da página
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // ── Função: voltar para a home ────────────────────────────────
+    function voltarHome() {
+      document.getElementById('page-home').style.display = 'flex';
+      document.getElementById('page-presentes').classList.remove('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // ── Função: renderizar os cards por cômodo ────────────────────
+    function renderizarPresentes() {
+      const container = document.getElementById('lista-container');
+      container.innerHTML = '';
+
+      if (todosPresentes.length === 0) {
+        container.innerHTML = '<div class="loading-wrap"><div class="spinner"></div></div>';
+        return;
+      }
+
+      // Agrupar presentes por cômodo
+      // reduce() percorre o array e cria um objeto onde cada chave é um cômodo
+      const porComodo = todosPresentes.reduce((grupos, item) => {
+        const comodo = item.comodo || 'Outros';
+        if (!grupos[comodo]) grupos[comodo] = [];
+        grupos[comodo].push(item);
+        return grupos;
+      }, {});
+
+      // Renderizar cada cômodo
+      Object.entries(porComodo).forEach(([nomeComodo, itens], idx) => {
+        const secao = document.createElement('div');
+        secao.className = 'comodo-section fade-in';
+        secao.style.animationDelay = `${idx * 0.08}s`;
+
+        const emoji = emojiComodo[nomeComodo] || emojiComodo['default'];
+
+        secao.innerHTML = `
+          <h3 class="comodo-title">${emoji} ${nomeComodo}</h3>
+          <div class="cards-grid" id="grid-${nomeComodo.replace(/\s/g,'-')}"></div>
+        `;
+
+        container.appendChild(secao);
+
+        const grid = secao.querySelector('.cards-grid');
+        itens.forEach(item => grid.appendChild(criarCard(item)));
+      });
+
+      // ── Seção especial: Bônus ──────────────────────────────────
+      const secaoBonus = document.createElement('div');
+      secaoBonus.className = 'comodo-section fade-in';
+      secaoBonus.style.animationDelay = `${Object.keys(porComodo).length * 0.08}s`;
+
+      secaoBonus.innerHTML = `
+        <h3 class="comodo-title">🎁 Bônus</h3>
+        <div class="cards-grid"></div>
+      `;
+
+      // Card especial de valor personalizado
+      const cardBonus = document.createElement('div');
+      cardBonus.className = 'card-presente card-bonus';
+      cardBonus.innerHTML = `
+        <div class="card-img-wrap">
+          <div class="card-bonus-icon">🎁</div>
+        </div>
+        <div class="card-body">
+          <p class="card-nome">Ajudar com outro valor</p>
+          <p class="card-valor">Valor livre</p>
+        </div>
+      `;
+      cardBonus.addEventListener('click', () => abrirModalBonus());
+
+      secaoBonus.querySelector('.cards-grid').appendChild(cardBonus);
+      container.appendChild(secaoBonus);
+    }
+
+    // ── Função: criar um card de presente ─────────────────────────
+    function criarCard(item) {
+      const card = document.createElement('div');
+      card.className = 'card-presente';
+
+      card.innerHTML = `
+        <div class="card-img-wrap">
+          <img
+            src="${item.imagem || 'https://via.placeholder.com/300'}"
+            alt="${item.nome}"
+            loading="lazy"
+            onerror="this.src='https://via.placeholder.com/300?text=${encodeURIComponent(item.nome)}'"
+          >
+        </div>
+        <div class="card-body">
+          <p class="card-nome">${item.nome}</p>
+          <p class="card-valor">${formatarMoeda(item.valor)}</p>
+        </div>
+      `;
+
+      // Ao clicar no card, abrir o modal com os detalhes do item
+      card.addEventListener('click', () => abrirModal(item));
+
+      return card;
+    }
+
+    // ── Função: abrir modal com detalhes do presente ──────────────
+    function abrirModal(item) {
+      const modal = document.getElementById('modal');
+
+      modal.innerHTML = `
+        <img
+          class="modal-img"
+          src="${item.imagem || ''}"
+          alt="${item.nome}"
+          onerror="this.style.display='none'; document.getElementById('img-placeholder-${item.id}').style.display='flex';"
+        >
+        <div class="modal-img-placeholder" id="img-placeholder-${item.id}" style="display:none;">🎁</div>
+
+        <div class="modal-body">
+
+          <div class="modal-header">
+            <h2 class="modal-nome">${item.nome}</h2>
+            <div style="display:flex; gap:.5rem; align-items:flex-start;">
+              <span class="modal-valor-badge">${formatarMoeda(item.valor)}</span>
+              <button class="btn-fechar" onclick="fecharModal()" title="Fechar">✕</button>
+            </div>
+          </div>
+
+          <p class="modal-desc">${item.descricao}</p>
+
+          <!-- Seção PIX -->
+          <div class="pix-section">
+            <p class="pix-title">💳 Pagar via PIX</p>
+
+            <!-- QR Code e código gerados dinamicamente -->
+            <div class="pix-content visible" id="pix-content">
+              <div class="qr-wrap">
+                <div id="qrcode-container">
+                  <div class="spinner" style="margin:8px;"></div>
+                </div>
+                <div class="qr-nome-recebedor">
+                  <p class="qr-nome-label">Recebedor</p>
+                  <p class="qr-nome-valor">${configPix.nomeRecebedor || '—'}</p>
+                </div>
+              </div>
+
+              <div class="aviso-pix">
+                ⚠️ <span>Confira o nome <strong>${configPix.nomeRecebedor}</strong> antes de confirmar o pagamento</span>
+              </div>
+
+              <div class="codigo-pix-wrap">
+                <p class="codigo-pix-label">Código PIX copia e cola</p>
+                <div class="codigo-pix-box" id="codigo-pix-text">Gerando…</div>
+              </div>
+
+              <button class="btn-copiar" id="btn-copiar" onclick="copiarPix()">
+                📋 Copiar código PIX
+              </button>
+            </div>
+          </div>
+
+        </div>
+      `;
+
+      // Abrir overlay
+      document.getElementById('modal-overlay').classList.add('open');
+      document.body.style.overflow = 'hidden'; // impede scroll do fundo
+
+      // Gerar PIX após renderizar o modal
+      const codigoPix = gerarPayloadPix(configPix.chavePix, configPix.nomeRecebedor, configPix.cidade, item.valor, configPix.mensagemPix || 'Cha Casa Nova');
+      setTimeout(() => gerarQrCode(codigoPix), 100);
+    }
+
+    // ── Função: abrir modal de valor personalizado (Bônus) ────────
+    function abrirModalBonus() {
+      const modal = document.getElementById('modal');
+
+      modal.innerHTML = `
+        <div class="modal-img-placeholder">🎁</div>
+
+        <div class="modal-body">
+          <div class="modal-header">
+            <h2 class="modal-nome">Contribuir com outro valor</h2>
+            <button class="btn-fechar" onclick="fecharModal()" title="Fechar">✕</button>
+          </div>
+
+          <p class="modal-desc">
+            Se você quiser ajudar de uma forma diferente, sinta-se à vontade
+            para digitar o valor que desejar. Todo gesto de carinho é
+            precioso para nós. 🤍
+          </p>
+
+          <div class="pix-section">
+            <p class="pix-title">💳 PIX com valor personalizado</p>
+
+            <!-- Campo para digitar valor -->
+            <div class="valor-custom-wrap">
+              <label class="valor-custom-label" for="valor-custom">Qual valor você quer enviar?</label>
+              <div class="valor-custom-input-row">
+                <input
+                  class="valor-input"
+                  id="valor-custom"
+                  type="number"
+                  min="1"
+                  step="0.01"
+                  placeholder="Ex: 50.00"
+                >
+                <button class="btn-gerar-pix" onclick="gerarPixPersonalizado()">
+                  Gerar PIX
+                </button>
+              </div>
+            </div>
+
+            <!-- QR Code e código (inicialmente escondidos) -->
+            <div class="pix-content" id="pix-content-bonus">
+              <div class="qr-wrap">
+                <div id="qrcode-container">
+                  <!-- QR gerado aqui -->
+                </div>
+                <div class="qr-nome-recebedor">
+                  <p class="qr-nome-label">Recebedor</p>
+                  <p class="qr-nome-valor">${configPix.nomeRecebedor || '—'}</p>
+                </div>
+              </div>
+
+              <div class="aviso-pix">
+                ⚠️ <span>Confira o nome <strong>${configPix.nomeRecebedor}</strong> antes de confirmar o pagamento</span>
+              </div>
+
+              <div class="codigo-pix-wrap">
+                <p class="codigo-pix-label">Código PIX copia e cola</p>
+                <div class="codigo-pix-box" id="codigo-pix-text">—</div>
+              </div>
+
+              <button class="btn-copiar" id="btn-copiar" onclick="copiarPix()">
+                📋 Copiar código PIX
+              </button>
+            </div>
+          </div>
+
+        </div>
+      `;
+
+      document.getElementById('modal-overlay').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    // ── Função: gerar PIX com valor personalizado ─────────────────
+    function gerarPixPersonalizado() {
+      const input = document.getElementById('valor-custom');
+      const valor = parseFloat(input.value);
+
+      if (!valor || valor <= 0) {
+        input.style.borderColor = '#f87171';
+        input.focus();
+        setTimeout(() => input.style.borderColor = '', 1500);
+        return;
+      }
+
+      const conteudo = document.getElementById('pix-content-bonus');
+      conteudo.classList.add('visible');
+
+      const codigoPix = gerarPayloadPix(configPix.chavePix, configPix.nomeRecebedor, configPix.cidade, valor, 'Cha Casa Nova');
+      setTimeout(() => gerarQrCode(codigoPix), 100);
+    }
+
+    // ── Função: fechar modal ──────────────────────────────────────
+    function fecharModal() {
+      document.getElementById('modal-overlay').classList.remove('open');
+      document.body.style.overflow = '';
+      // Limpa o QR Code para não acumular na memória
+      setTimeout(() => {
+        document.getElementById('modal').innerHTML = '';
+      }, 300);
+    }
+
+    // Fecha modal ao clicar fora dele (no overlay)
+    function fecharModalAoClicarFora(event) {
+      if (event.target === document.getElementById('modal-overlay')) {
+        fecharModal();
+      }
+    }
+
+    // Fecha modal com a tecla ESC
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') fecharModal();
+    });
+
+    // ── Função: gerar QR Code ─────────────────────────────────────
+    function gerarQrCode(codigoPix) {
+      const container = document.getElementById('qrcode-container');
+      if (!container) return;
+
+      container.innerHTML = ''; // limpa spinner ou QR antigo
+
+      // A biblioteca QRCode.js cria o QR Code e insere no container
+      new QRCode(container, {
+        text:           codigoPix,
+        width:          180,
+        height:         180,
+        colorDark:      '#1d1d1f',
+        colorLight:     '#ffffff',
+        correctLevel:   QRCode.CorrectLevel.M
+      });
+
+      // Atualiza o texto do código copia e cola
+      const caixaCodigo = document.getElementById('codigo-pix-text');
+      if (caixaCodigo) caixaCodigo.textContent = codigoPix;
+    }
+
+    // ── Função: copiar código PIX ─────────────────────────────────
+    async function copiarPix() {
+      const codigo = document.getElementById('codigo-pix-text')?.textContent;
+      const btn = document.getElementById('btn-copiar');
+      if (!codigo || codigo === '—' || codigo === 'Gerando…') return;
+
+      try {
+        await navigator.clipboard.writeText(codigo);
+        btn.textContent = '✅ Copiado!';
+        btn.classList.add('copiado');
+        setTimeout(() => {
+          btn.innerHTML = '📋 Copiar código PIX';
+          btn.classList.remove('copiado');
+        }, 2500);
+      } catch {
+        // Fallback para navegadores mais antigos
+        const ta = document.createElement('textarea');
+        ta.value = codigo;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        btn.textContent = '✅ Copiado!';
+        btn.classList.add('copiado');
+        setTimeout(() => { btn.innerHTML = '📋 Copiar código PIX'; btn.classList.remove('copiado'); }, 2500);
+      }
+    }
+
+    // ── Função: formatar moeda brasileira ─────────────────────────
+    function formatarMoeda(valor) {
+      return new Intl.NumberFormat('pt-BR', {
+        style: 'currency',
+        currency: 'BRL'
+      }).format(valor);
+    }
+
+    // ════════════════════════════════════════════════════════════════
+    //  GERADOR DE PAYLOAD PIX (BR Code / EMV)
+    //
+    //  O PIX usa um padrão chamado EMV QR Code.
+    //  É como um "formulário" em formato de texto que os bancos leem.
+    //  Cada campo tem: ID (2 dígitos) + tamanho (2 dígitos) + valor.
+    //
+    //  Exemplo:
+    //  "000201" = ID 00, tamanho 02, valor "01" (versão do formato)
+    // ════════════════════════════════════════════════════════════════
+    function gerarPayloadPix(chavePix, nomeRecebedor, cidade, valor, descricao) {
+
+      // Sanitizar entradas (remover acentos e caracteres especiais)
+      nomeRecebedor = sanitizarTexto(nomeRecebedor).substring(0, 25);
+      cidade = sanitizarTexto(cidade || 'SAO PAULO').substring(0, 15);
+      descricao = sanitizarTexto(descricao || 'Cha Casa Nova').substring(0, 72);
+
+      // Formatar valor com 2 casas decimais, sem símbolo
+      const valorStr = parseFloat(valor).toFixed(2);
+
+      // ── Campo 26: Merchant Account Information (dados do PIX) ──
+      const gui = 'BR.GOV.BCB.PIX';                         // identificador global
+      const guiField = tlv('00', gui);                       // subcampo 00
+      const chaveField = tlv('01', chavePix);                // subcampo 01: chave
+      const descField = tlv('02', descricao);                // subcampo 02: descrição
+      const campo26 = tlv('26', guiField + chaveField + descField);
+
+      // ── Campo 62: Additional Data Field Template ──
+      const txid = 'CHA' + Date.now().toString().slice(-8);  // ID de transação único
+      const campo62 = tlv('62', tlv('05', txid));
+
+      // ── Montar payload sem CRC ──
+      let payload =
+        tlv('00', '01') +           // versão do formato
+        tlv('01', '12') +           // "não reutilizável" (cada QR paga uma vez)
+        campo26 +                   // dados do PIX
+        tlv('52', '0000') +         // MCC (0000 = não especificado)
+        tlv('53', '986') +          // moeda: 986 = Real Brasileiro
+        tlv('54', valorStr) +       // valor
+        tlv('58', 'BR') +           // país
+        tlv('59', nomeRecebedor) +  // nome do recebedor
+        tlv('60', cidade) +         // cidade
+        campo62 +                   // dados adicionais
+        '6304';                     // ID do CRC (valor calculado abaixo)
+
+      // ── Calcular e adicionar CRC16 ──
+      const crc = calcularCRC16(payload);
+      return payload + crc;
+    }
+
+    // Formata um campo TLV (Tag-Length-Value): ID + tamanho + valor
+    function tlv(id, valor) {
+      const tamanho = String(valor.length).padStart(2, '0');
+      return id + tamanho + valor;
+    }
+
+    // Remove acentos e caracteres não-ASCII (o PIX não aceita)
+    function sanitizarTexto(texto) {
+      return texto
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')  // remove marcas de acento
+        .replace(/[^\x20-\x7E]/g, '')     // mantém apenas ASCII imprimível
+        .toUpperCase()
+        .trim();
+    }
+
+    // CRC-16/CCITT-FALSE: algoritmo de verificação de integridade do PIX
+    function calcularCRC16(payload) {
+      let crc = 0xFFFF;
+      for (let i = 0; i < payload.length; i++) {
+        crc ^= payload.charCodeAt(i) << 8;
+        for (let j = 0; j < 8; j++) {
+          crc = (crc & 0x8000) ? ((crc << 1) ^ 0x1021) : (crc << 1);
+        }
+      }
+      return ((crc & 0xFFFF).toString(16).toUpperCase().padStart(4, '0'));
+    }
+
+  </script>
+</body>
+</html>
