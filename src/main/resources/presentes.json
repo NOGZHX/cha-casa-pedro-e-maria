@@ -201,75 +201,8 @@
     "imagem": "img/jogo-copos.webp",
     "comodo": "Cozinha"
   },
-
   {
     "id": 26,
-    "nome": "Cortina",
-    "valor": 100,
-    "descricao": "Para conforto e privacidade.",
-    "imagem": "img/cortina.webp",
-    "comodo": "Quarto"
-  },
-  {
-    "id": 27,
-    "nome": "Lençol com zíper",
-    "valor": 120,
-    "descricao": "Prático e confortável.",
-    "imagem": "img/lencol-ziper.webp",
-    "comodo": "Quarto"
-  },
-  {
-    "id": 28,
-    "nome": "Cabides",
-    "valor": 50,
-    "descricao": "Para organizar roupas.",
-    "imagem": "img/cabides.webp",
-    "comodo": "Quarto"
-  },
-  {
-    "id": 29,
-    "nome": "Almofadas",
-    "valor": 35,
-    "descricao": "Mais conforto no dia a dia.",
-    "imagem": "img/almofadas-quarto.webp",
-    "comodo": "Quarto"
-  },
-  {
-    "id": 30,
-    "nome": "Cobertor",
-    "valor": 100,
-    "descricao": "Para noites quentinhas.",
-    "imagem": "img/cobertor.webp",
-    "comodo": "Quarto"
-  },
-  {
-    "id": 31,
-    "nome": "Edredom",
-    "valor": 150,
-    "descricao": "Mais aconchego.",
-    "imagem": "img/edredom.webp",
-    "comodo": "Quarto"
-  },
-
-  {
-    "id": 32,
-    "nome": "Almofadas sala",
-    "valor": 60,
-    "descricao": "Para deixar a sala aconchegante.",
-    "imagem": "img/almofadas-sala.webp",
-    "comodo": "Sala"
-  },
-  {
-    "id": 33,
-    "nome": "Protetor duplo porta",
-    "valor": 35,
-    "descricao": "Evita insetos e poeira.",
-    "imagem": "img/cobra-porta.webp",
-    "comodo": "Sala"
-  },
-
-  {
-    "id": 34,
     "nome": "Escorredor de macarrão",
     "valor": 40,
     "descricao": "Para escorrer massas.",
@@ -277,7 +210,7 @@
     "comodo": "Cozinha"
   },
   {
-    "id": 35,
+    "id": 27,
     "nome": "Escorredor de arroz",
     "valor": 35,
     "descricao": "Facilita no preparo.",
@@ -285,7 +218,7 @@
     "comodo": "Cozinha"
   },
   {
-    "id": 36,
+    "id": 28,
     "nome": "Espremedor de alho",
     "valor": 25,
     "descricao": "Prático no dia a dia.",
@@ -293,7 +226,7 @@
     "comodo": "Cozinha"
   },
   {
-    "id": 37,
+    "id": 29,
     "nome": "Espremedor de limão",
     "valor": 25,
     "descricao": "Para sucos e receitas.",
@@ -301,23 +234,7 @@
     "comodo": "Cozinha"
   },
   {
-    "id": 38,
-    "nome": "Coador de café",
-    "valor": 20,
-    "descricao": "Para o café do dia a dia.",
-    "imagem": "img/coador-cafe.webp",
-    "comodo": "Cozinha"
-  },
-  {
-    "id": 39,
-    "nome": "Martelo de carne",
-    "valor": 35,
-    "descricao": "Para preparo de carnes.",
-    "imagem": "img/martelo-carne.webp",
-    "comodo": "Cozinha"
-  },
-  {
-    "id": 40,
+    "id": 30,
     "nome": "Porta temperos",
     "valor": 50,
     "descricao": "Organiza os temperos.",
@@ -325,82 +242,109 @@
     "comodo": "Cozinha"
   },
   {
-    "id": 41,
-    "nome": "Escova de roupa",
-    "valor": 20,
-    "descricao": "Para lavar roupas.",
-    "imagem": "img/escova-roupa.webp",
-    "comodo": "Geral"
-  },
-  {
-    "id": 42,
-    "nome": "Pano de chão",
-    "valor": 25,
-    "descricao": "Para limpeza da casa.",
-    "imagem": "img/pano-chao.webp",
-    "comodo": "Geral"
-  },
-  {
-    "id": 43,
+    "id": 31,
     "nome": "Mixer",
     "valor": 120,
     "descricao": "Para facilitar receitas.",
     "imagem": "img/mixer.webp",
     "comodo": "Cozinha"
   },
-{
-  "id": 44,
-  "nome": "Ralador",
-  "valor": 30,
-  "descricao": "Para preparar alimentos.",
-  "imagem": "img/ralador.webp",
-  "comodo": "Cozinha"
-},
-{
-  "id": 45,
-  "nome": "Forma de gelo",
-  "valor": 15,
-  "descricao": "Para fazer gelo.",
-  "imagem": "img/forma-gelo.webp",
-  "comodo": "Cozinha"
-},
-{
-  "id": 46,
-  "nome": "Colher de pau",
-  "valor": 20,
-  "descricao": "Para cozinhar no dia a dia.",
-  "imagem": "img/colher-pau.webp",
-  "comodo": "Cozinha"
-},
-{
-  "id": 47,
-  "nome": "Concha",
-  "valor": 25,
-  "descricao": "Para servir alimentos.",
-  "imagem": "img/concha.webp",
-  "comodo": "Cozinha"
-},
-{
-  "id": 48,
-  "nome": "Espátula",
-  "valor": 25,
-  "descricao": "Para auxiliar nas receitas.",
-  "imagem": "img/espatula.webp",
-  "comodo": "Cozinha"
-},
-{
-  "id": 49,
-  "nome": "Abridor de garrafa",
-  "valor": 20,
-  "descricao": "Prático no dia a dia.",
-  "imagem": "img/abridor.webp",
-  "comodo": "Cozinha"
-},
-{
-  "id": 50,
-  "nome": "Protetor de colchão",
-  "valor": 80,
-  "descricao": "Para proteger a cama.",
-  "imagem": "img/protetor-colchao.webp",
-  "comodo": "Quarto"
-}
+  {
+    "id": 32,
+    "nome": "Ralador",
+    "valor": 30,
+    "descricao": "Para preparar alimentos.",
+    "imagem": "img/ralador.webp",
+    "comodo": "Cozinha"
+  },
+  {
+    "id": 33,
+    "nome": "Forma de gelo",
+    "valor": 15,
+    "descricao": "Para fazer gelo.",
+    "imagem": "img/forma-gelo.webp",
+    "comodo": "Cozinha"
+  },
+  {
+    "id": 34,
+    "nome": "Abridor de garrafa",
+    "valor": 20,
+    "descricao": "Prático no dia a dia.",
+    "imagem": "img/abridor.webp",
+    "comodo": "Cozinha"
+  },
+
+  {
+    "id": 35,
+    "nome": "Cortina",
+    "valor": 100,
+    "descricao": "Para conforto e privacidade.",
+    "imagem": "img/cortina.webp",
+    "comodo": "Quarto"
+  },
+  {
+    "id": 36,
+    "nome": "Lençol com zíper",
+    "valor": 120,
+    "descricao": "Prático e confortável.",
+    "imagem": "img/lencol-ziper.webp",
+    "comodo": "Quarto"
+  },
+  {
+    "id": 37,
+    "nome": "Cabides",
+    "valor": 50,
+    "descricao": "Para organizar roupas.",
+    "imagem": "img/cabides.webp",
+    "comodo": "Quarto"
+  },
+  {
+    "id": 38,
+    "nome": "Cobertor",
+    "valor": 100,
+    "descricao": "Para noites quentinhas.",
+    "imagem": "img/cobertor.webp",
+    "comodo": "Quarto"
+  },
+  {
+    "id": 39,
+    "nome": "Edredom",
+    "valor": 150,
+    "descricao": "Mais aconchego.",
+    "imagem": "img/edredom.webp",
+    "comodo": "Quarto"
+  },
+  {
+    "id": 40,
+    "nome": "Protetor de colchão",
+    "valor": 80,
+    "descricao": "Para proteger a cama.",
+    "imagem": "img/protetor-colchao.webp",
+    "comodo": "Quarto"
+  },
+
+  {
+    "id": 41,
+    "nome": "Tapete",
+    "valor": 100,
+    "descricao": "Mais conforto na cozinha.",
+    "imagem": "img/tapete-sala.webp",
+    "comodo": "Sala"
+  },
+  {
+    "id": 42,
+    "nome": "Almofadas sala",
+    "valor": 60,
+    "descricao": "Para deixar a sala aconchegante.",
+    "imagem": "img/almofadas-sala.webp",
+    "comodo": "Sala"
+  },
+  {
+    "id": 43,
+    "nome": "Protetor duplo porta",
+    "valor": 35,
+    "descricao": "Evita insetos e poeira.",
+    "imagem": "img/cobra-porta.webp",
+    "comodo": "Sala"
+  }
+]
