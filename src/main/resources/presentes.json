@@ -131,8 +131,8 @@
 
   {
     "id": 17,
-    "nome": "Abridor de garrafa",
-    "valor": 20,
+    "nome": "Abridor de garrafas e latas",
+    "valor": 15,
     "descricao": "Prático no dia a dia.",
     "imagem": "img/abridor.webp",
     "comodo": "Cozinha"
