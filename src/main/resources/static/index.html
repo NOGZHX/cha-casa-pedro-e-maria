@@ -913,7 +913,11 @@
       }, {});
 
       // Renderizar cada cômodo
-      Object.entries(porComodo).forEach(([nomeComodo, itens], idx) => {
+const ordemComodos = ['Geral', 'Cozinha', 'Banheiro', 'Quarto', 'Sala'];
+
+ordemComodos.forEach((nomeComodo, idx) => {
+  const itens = porComodo[nomeComodo];
+  if (!itens) return;
         const secao = document.createElement('div');
         secao.className = 'comodo-section fade-in';
         secao.style.animationDelay = `${idx * 0.08}s`;
